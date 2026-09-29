@@ -1,4 +1,5 @@
-let wordArr = [
+//dictionary
+const commonWords = [
     {"adult": "взрослый"},
     {"age": "возраст"},
     {"baby": "малыш"},
@@ -1025,88 +1026,451 @@ let wordArr = [
     {"out": "из"},
     {"to": "к, в, на"}
 ];
-let countWords = wordArr.length
+const phrasalVerbs = [
+    {"add up to": "составлять в сумме"},
+    {"ask around": "поспрашивать (разных людей)"},
+    {"ask out": "звать на свидание"},
+    {"back up": "поддерживать, защищать"},
+    {"blow up": "взрываться"},
+    {"break down": "ломаться"},
+    {"break into": "врываться"},
+    {"break out": "сбежать"},
+    {"break out in": "покрыться (о коже)"},
+    {"break up": "расставаться"},
+    {"bring down": "расстроить"},
+    {"bring in": "вносить, приносить"},
+    {"bring up": "поднять тему"},
+    {"call around": "обзванивать"},
+    {"call back": "перезвонить"},
+    {"call off": "отменять"},
+    {"call on": "вызвать"},
+    {"call up": "позвонить"},
+    {"calm down": "успокаиваться"},
+    {"catch on": "прижиться"},
+    {"catch up": "догнать"},
+    {"check in": "зарегистрироваться на рейс или в отеле"},
+    {"check out": "проверять"},
+    {"cheer up": "развеселить"},
+    {"chip in": "помочь"},
+    {"clean up": "убирать"},
+    {"come across": "наткнуться, случайно найти"},
+    {"come apart": "развалиться"},
+    {"come around": "поменять мнение"},
+    {"come between": "встать между кем-либо"},
+    {"come down on": "ругать, отчитывать"},
+    {"come down with": "заболеть"},
+    {"come forward": "выступить"},
+    {"come from": "происходить"},
+    {"come out": "выйти, появиться"},
+    {"come out of": "быть результатом чего-либо"},
+    {"come up": "всплыть, стать предметом разговора"},
+    {"come up with": "придумывать"},
+    {"count on": "полагаться на что-либо/кого-либо"},
+    {"cross out": "вычеркнуть"},
+    {"cut back on": "сократить потребление"},
+    {"cut down": "срубить"},
+    {"cut in": "вмешаться"},
+    {"cut off": "отрезать"},
+    {"cut out": "вырезать"},
+    {"dive into": "погрузиться"},
+    {"do away with": "выбрасывать"},
+    {"do up": "закрыть, застегнуть"},
+    {"dress up": "хорошо одеться"},
+    {"drop back": "отступить, отойти"},
+    {"drop by": "навестить"},
+    {"drop off": "отвезти, подвезти"},
+    {"drop out": "бросить учебу"},
+    {"eat out": "есть в ресторане"},
+    {"end up": "прийти к решению или действию"},
+    {"fall apart": "развалиться"},
+    {"fall down": "упасть"},
+    {"fall out": "выпасть"},
+    {"figure out": "понять, выяснить"},
+    {"fill in": "заполнить"},
+    {"fill up": "наполнить"},
+    {"find out": "выяснить, узнать"},
+    {"get across": "донести"},
+    {"get ahead": "продвинуться"},
+    {"get along with": "ладить"},
+    {"get around": "обойти, объехать"},
+    {"get around to": "в конце концов что-то сделать"},
+    {"get at": "дотянуться"},
+    {"get away": "уйти, сбежать"},
+    {"get away with": "избежать наказания"},
+    {"get back": "вернуть"},
+    {"get back at": "отомстить"},
+    {"get back into": "вернуться"},
+    {"get by": "выживать"},
+    {"get down": "расстроить"},
+    {"get down to": "начать, приступить"},
+    {"get in on": "присоединиться"},
+    {"get into": "вдаваться в подробности"},
+    {"get on": "сесть в транспортное средство"},
+    {"get on with": "ладить, дружить"},
+    {"get out of": "получать выгоду"},
+    {"get over": "преодолеть"},
+    {"get rid of": "избавиться"},
+    {"get through": "пережить, преодолеть"},
+    {"get to": "раздражать"},
+    {"get together": "собираться"},
+    {"get up": "подняться, встать"},
+    {"give away": "отдавать, дарить"},
+    {"give back": "отдать, вернуть"},
+    {"give in": "сдаться"},
+    {"give out": "раздавать"},
+    {"give up": "сдаваться, прекращать"},
+    {"go after": "преследовать, идти за кем-либо"},
+    {"go against": "противостоять"},
+    {"go ahead": "двигаться вперед"},
+    {"go along with": "соглашаться"},
+    {"go around": "обойти"},
+    {"go back": "возвращаться"},
+    {"go for": "стремиться"},
+    {"go on": "продолжать"},
+    {"go out": "выйти из дома"},
+    {"go out with": "пойти на свидание"},
+    {"go over": "проверять, пересматривать"},
+    {"go without": "продолжать без чего-либо"},
+    {"grow apart": "отдалиться друг от друга"},
+    {"grow back": "вырасти снова"},
+    {"grow into": "дорасти до чего-либо"},
+    {"grow out of": "вырасти из чего-либо"},
+    {"grow up": "повзрослеть"},
+    {"hand down": "передать по наследству"},
+    {"hand in": "отправлять"},
+    {"hand out": "раздавать"},
+    {"hand over": "передать, сдать"},
+    {"hang in": "держаться"},
+    {"hang on": "ждать"},
+    {"hang out": "тусоваться"},
+    {"hang up": "повесить трубку"},
+    {"heal up": "зажить"},
+    {"hold back": "мешать, сдерживать"},
+    {"hold on": "ждать"},
+    {"hold onto": "крепко держаться"},
+    {"hold up": "держать, держаться"},
+    {"keep from": "скрывать"},
+    {"keep out": "не пускать"},
+    {"keep up": "продолжать"},
+    {"leave out": "пропустить, упустить"},
+    {"let down": "разочаровать"},
+    {"let go of": "отпускать"},
+    {"let in": "впускать"},
+    {"let know": "рассказать, сообщить"},
+    {"log in": "войти в аккаунт"},
+    {"log out": "выйти из аккаунта"},
+    {"look after": "заботиться, присматривать"},
+    {"look down on": "смотреть свысока"},
+    {"look for": "искать"},
+    {"look forward to": "ждать с нетерпением, предвкушать"},
+    {"look into": "исследовать"},
+    {"look out": "остерегаться"},
+    {"look out for": "остерегаться чего-либо определенного"},
+    {"look over": "проверить"},
+    {"look up": "искать информацию"},
+    {"look up to": "уважать, брать пример"},
+    {"make out": "понять"},
+    {"make up": "выдумывать, врать"},
+    {"make up for": "компенсировать, загладить вину"},
+    {"mix up": "перепутать"},
+    {"pass away": "умереть"},
+    {"pass out": "потерять сознание"},
+    {"pass up": "отказаться"},
+    {"pay back": "вернуть долг"},
+    {"pay for": "расплачиваться, нести наказание"},
+    {"pick out": "выбирать"},
+    {"pick up": "подобрать, подвезти"},
+    {"point out": "указывать"},
+    {"pull up": "подтягивать"},
+    {"put down": "положить, поставить"},
+    {"put off": "откладывать"},
+    {"put on": "надевать"},
+    {"put out": "потушить"},
+    {"put together": "собрать"},
+    {"put up with": "терпеть, мириться с чем-либо"},
+    {"run away": "сбежать"},
+    {"run into": "случайно встретить"},
+    {"run out of": "исчерпать"},
+    {"run over": "переехать кого-либо или что-либо"},
+    {"see to": "проследить за чем-либо"},
+    {"send back": "отослать обратно"},
+    {"set up": "устанавливать, организовывать"},
+    {"shop around": "походить по магазинам в поисках"},
+    {"show off": "красоваться, хвастаться"},
+    {"shut off": "выключать"},
+    {"sleep over": "ночевать у кого-либо"},
+    {"sort out": "разобраться с проблемой"},
+    {"stand up": "вставать"},
+    {"stick to": "придерживаться, продолжать делать что-либо"},
+    {"switch off": "выключить"},
+    {"switch on": "включить"},
+    {"take after": "походить на родственника"},
+    {"take apart": "разобрать на части"},
+    {"take back": "вернуть"},
+    {"take off": "взлететь, быстро уйти"},
+    {"take out": "выносить"},
+    {"tear up": "порвать"},
+    {"think back": "вспомнить"},
+    {"think over": "обдумывать"},
+    {"throw away": "выбрасывать"},
+    {"try on": "примерить"},
+    {"try out": "протестировать, попробовать"},
+    {"turn down": "отвергать"},
+    {"turn into": "превратиться"},
+    {"turn off": "выключить"},
+    {"turn on": "включить"},
+    {"turn up": "увеличить (громкость, скорость, силу и т. п.)"},
+    {"use up": "истратить, израсходовать"},
+    {"wait on": "обслуживать"},
+    {"wake up": "проснуться"},
+    {"warm up": "согреть"},
+    {"wear off": "стереться, износиться"},
+    {"work out": "тренироваться, заниматься спортом"}
+];
+const MySema = [
+    {"Absorbing": "Поглощение (сбоев, возмущений)"},
+    {"Academically": "С академической точки зрения"},
+    {"Achieve": "Достигать"},
+    {"Acquisition": "Сбор, получение (данных)"},
+    {"Account (for)": "Учитывать"},
+    {"Advancement": "Развитие, прогресс"},
+    {"Advantage": "Преимущество"},
+    {"Applying": "Применение"},
+    {"Application": "Применение, использование"},
+    {"Approaches": "Подходы, методы"},
+    {"Attention": "Внимание"},
+    {"Available": "Доступный"},
+    {"Behavior": "Поведение"},
+    {"Benefit": "Преимущество, выгода"},
+    {"Broad": "Широкий"},
+    {"Buying pattern": "Паттерн покупок, модель покупательского поведения"},
+    {"Buzzword": "Модное словечко, модный термин"},
+    {"Capabilities": "Способности, возможности"},
+    {"Capacity planning": "Планирование мощностей"},
+    {"Cause": "Причина"},
+    {"Challenge": "Вызов, трудность"},
+    {"Closed-loop": "Замкнутый (цикл)"},
+    {"Collection": "Сбор (данных, информации)"},
+    {"Compared": "По сравнению"},
+    {"Comprehensively": "Всесторонне, комплексно"},
+    {"Complex": "Сложный"},
+    {"Competitive": "Конкурентный"},
+    {"Comprising": "Включающий, охватывающий"},
+    {"Conducted": "Проведенный"},
+    {"Conduction": "Проведение"},
+    {"Conclusion": "Заключение"},
+    {"Conduct": "Проводить"},
+    {"Consider": "Учитывать, рассматривать"},
+    {"Considered": "Рассматриваемый"},
+    {"Contribute": "Способствовать, вносить вклад"},
+    {"Contributions": "Вклад, результаты"},
+    {"Crucial": "Критический, решающий"},
+    {"Customer": "Клиент, заказчик"},
+    {"Decision-making": "Принятие решений"},
+    {"Dedicated": "Специализированный, посвященный"},
+    {"Demand": "Спрос, потребность"},
+    {"Demands": "Потребности, спрос"},
+    {"Deployment": "Развертывание, внедрение"},
+    {"Descriptive": "Описательный"},
+    {"Design": "Проектирование, разработка"},
+    {"Diagnostic": "Диагностический"},
+    {"Diverse": "Разнообразный"},
+    {"Distribution": "Распределение, дистрибуция"},
+    {"Divide": "Делить, разделять"},
+    {"Due": "Благодаря, должный"},
+    {"Despite": "Несмотря на"},
+    {"Efficiency": "Эффективность"},
+    {"Emphasized": "Подчеркнуто"},
+    {"Emphasizing": "Подчеркивая"},
+    {"Employed": "Используемый, применяемый"},
+    {"Encompassing": "Охватывающий"},
+    {"Ensure": "Обеспечивать"},
+    {"Enterprise": "Предприятие"},
+    {"Ensemble learning": "Ансамблевое обучение"},
+    {"Environmental": "Экологический, природоохранный"},
+    {"Et al.": "И др. (и другие)"},
+    {"Evident": "Очевидный"},
+    {"Evolve": "Развиваться, эволюционировать"},
+    {"Exclude": "Исключать"},
+    {"Existing": "Существующий"},
+    {"Extensively": "Широко, обширно"},
+    {"Facilities capacity": "Мощность предприятий"},
+    {"Facility location": "Размещение объектов/предприятий"},
+    {"Feature": "Включать, содержать; особенность"},
+    {"Forecasting": "Прогнозирование"},
+    {"Framework": "Концептуальная основа, структура"},
+    {"Frequently": "Часто"},
+    {"Furthermore": "Более того, кроме того"},
+    {"Gap": "Пробел (в исследованиях)"},
+    {"Guideline": "Рекомендация, руководство"},
+    {"High predictive accuracy": "Высокая точность прогнозирования"},
+    {"Highlighted": "Выделенный, подчеркивается"},
+    {"Holistic": "Целостный, всеобъемлющий"},
+    {"Identifying": "Выявление, идентификация"},
+    {"Include": "Включать"},
+    {"Increase": "Увеличение, рост"},
+    {"Indicate": "Указывать, свидетельствовать"},
+    {"Infer": "Выводить, делать вывод"},
+    {"Initial": "Первоначальный, исходный"},
+    {"Insights": "Выводы, результаты, представления"},
+    {"Intersection": "Пересечение"},
+    {"Involved": "Вовлеченный, задействованный"},
+    {"Investigation": "Исследование"},
+    {"Irrelevant": "Нерелевантный, не относящийся к теме"},
+    {"Knowledge": "Знание"},
+    {"Lack": "Отсутствие, нехватка"},
+    {"Limitations": "Ограничения"},
+    {"Lot-sizing": "Определение размера партии"},
+    {"Manufacture": "Производство"},
+    {"Mitigate": "Снижать, минимизировать (риски)"},
+    {"Novel": "Новый, оригинальный"},
+    {"Objective": "Цель"},
+    {"Observed": "Наблюдаемый"},
+    {"Offer": "Предлагать, предоставлять"},
+    {"Operational": "Операционный"},
+    {"Overlook": "Игнорировать, упускать из виду"},
+    {"Particular": "Конкретный, определенный"},
+    {"Pattern": "Паттерн, модель"},
+    {"Performance": "Производительность, эффективность, результаты"},
+    {"Predicting": "Прогнозирование, предсказание"},
+    {"Predictive": "Прогнозный"},
+    {"Prescriptive": "Предписывающий"},
+    {"Produce": "Производить, создавать"},
+    {"Procurement": "Закупки, снабжение"},
+    {"Prominent": "Выдающийся, заметный"},
+    {"Propose": "Предлагать"},
+    {"Quality": "Качество"},
+    {"Recent": "Недавний, последний"},
+    {"Reduce": "Снижать, уменьшать"},
+    {"Refined": "Уточненный, усовершенствованный"},
+    {"Regarding": "Что касается, относительно"},
+    {"Reinforcement learning": "Обучение с подкреплением"},
+    {"Relies": "Опирается, полагается"},
+    {"Remain": "Оставаться"},
+    {"Relevant": "Релевантный, относящийся к теме"},
+    {"Resilience": "Живучесть, устойчивость к сбоям"},
+    {"Resilient": "Живучий, устойчивый"},
+    {"Restricted": "Ограниченный"},
+    {"Revealed": "Выявил, показал"},
+    {"Rigorous": "Строгий, тщательный"},
+    {"Scattered": "Разбросанный, разрозненный"},
+    {"Selection": "Отбор, выбор"},
+    {"Semi-": "Полу-"},
+    {"Sensors": "Датчики, сенсоры"},
+    {"Separately": "Отдельно"},
+    {"Significant": "Значительный, существенный"},
+    {"Significantly": "Значительно"},
+    {"Strengths": "Сильные стороны, преимущества"},
+    {"Substantial": "Существенный, значительный"},
+    {"Supplier selection": "Выбор поставщиков"},
+    {"Sustainability": "Устойчивое развитие"},
+    {"Sustainable": "Устойчивый (в контексте развития)"},
+    {"Survey": "Обзор (исследование)"},
+    {"Supply": "Поставка"},
+    {"Supply chains": "Цепи поставок"},
+    {"Surge": "Всплеск, резкий рост"},
+    {"Through": "Через, посредством"},
+    {"Triangulated": "Триангулированный"},
+    {"Unbiased": "Беспристрастный, объективный"},
+    {"Uncertainty": "Неопределенность"},
+    {"Underutilized": "Недостаточно используемый"},
+    {"Utilizing": "Используя"},
+    {"Valuable": "Ценный"},
+    {"Value": "Ценность"},
+    {"Variability": "Изменчивость"},
+    {"Variety": "Разнообразие"},
+    {"Velocity": "Скорость (роста данных)"},
+    {"Veracity": "Достоверность"},
+    {"Vehicle routing": "Маршрутизация транспортных средств"},
+    {"Viability": "Жизнеспособность"},
+    {"Viewpoint": "Точка зрения"},
+    {"Volume": "Объем"},
+    {"Weaknesses": "Слабые стороны, недостатки"},
+    {"Yield": "Давать, обеспечивать"}
+];
 
-let arrIndex=[];
-let arrMaybeAnswer=[];
-let countAnswer = 4
-let k=0;
+//constDOM
+const selector = document.querySelector("select")
+const guessedWord = document.querySelector(".guessedWord")
+const btn1 = document.querySelector("#btn1")
+const btn2 = document.querySelector("#btn2")
+const btn3 = document.querySelector("#btn3")
+const btn4 = document.querySelector("#btn4")
 
-const h1Word = document.querySelector(".text")
-const btns = document.querySelectorAll(".btn")
-function shakeIndexArr(){
-    for (let i=0;i<countWords;i++){
-        arrIndex.push(i)
+//const
+let selectedDictionary = commonWords
+let count = 0
+
+
+//function
+function chooseDictionary(variable){
+    if (variable =="commonWords") {
+        shuffleArray(commonWords)
+        selectedDictionary = commonWords
+        count = 0
     }
-    for (let i=0;i<countWords;i++){
-        let randomIndex = Math.floor(Math.random() * countWords);
-        let tempValue = arrIndex[i];
-        arrIndex[i]= arrIndex[randomIndex]
-        arrIndex[randomIndex] = tempValue
+    else if (variable =="phrasalVerbs") {
+        shuffleArray(phrasalVerbs)
+        selectedDictionary = phrasalVerbs
+        count = 0
     }
+    else {
+        shuffleArray(MySema)
+        selectedDictionary = MySema
+        count = 0
+    }
+    chooseWords(count)
 }
-function shakeAnswerArr(index, arrMaybeAnswer){
-    while (arrMaybeAnswer.length) { arrMaybeAnswer.pop(); }
-    arrMaybeAnswer.push(index)
-    let count =0;
 
-    while (count!=countAnswer-1){
-        let randomIndex = Math.floor(Math.random() * countWords);
-        if (!arrMaybeAnswer.includes(randomIndex)){
-            count++;
-            arrMaybeAnswer.push(randomIndex)
-        }
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        // Generate a random index between 0 and i
+        let j = Math.floor(Math.random() * (i + 1));
+
+        // Swap elements at indices i and j
+        [array[i], array[j]] = [array[j], array[i]];
     }
-    for (let i=0;i<countAnswer;i++){
-        let randomIndex = Math.floor(Math.random() * countAnswer);
-        let tempValue = arrMaybeAnswer[i];
-        arrMaybeAnswer[i]= arrMaybeAnswer[randomIndex]
-        arrMaybeAnswer[randomIndex] = tempValue
-    }
-}
-
-function showValue(index, arrMaybeAnswer){
-    console.log(Object.keys(wordArr[index])[k])
-    for (let i=0;i<countAnswer;i++) console.log(Object.values(wordArr[arrMaybeAnswer[i]])[0])
-}
-
-function checkAnswer(btn){
-    //console.log("skdfjslkdfj", Object.values(wordArr[arrIndex[k]])[0])
-    //console.log("dskfjslfjs", h1Word.textContent)
-    //console.log("dskfjsdlifj", btn.textContent)
-    //console.log("skjfsl", btn.style)
-    if (Object.values(wordArr[arrIndex[k]])[0] == btn.textContent) {
-        btn.style.background="green";
-        k++;
-        putWords(k);
-
-    }
-    else{
-        btn.style.background="red"
-    }
-}
-function putWords(k){
-    shakeAnswerArr(arrIndex[k], arrMaybeAnswer)
-    console.log(arrIndex)
-    console.log(arrMaybeAnswer)
-    h1Word.textContent = (Object.keys(wordArr[arrIndex[k]])[0]);
-    //btns.forEach((btn)=> btn.textContent=)
-    for (let j=0; j<btns.length;j++){
-        btns[j].textContent=(Object.values(wordArr[arrMaybeAnswer[j]])[0])
-    }
-        
-    btns.forEach((btn)=>btn.style.background="transparent")
-}
-
-
-
-shakeIndexArr()
-//shakeAnswerArr(arrIndex[k], arrMaybeAnswer)
-
-//showValue(arrIndex[k], arrMaybeAnswer)
-putWords(k)
-//console.log(btns)
-
-
-btns.forEach((btn)=>btn.addEventListener("click",()=>checkAnswer(btn)))
     
+}
+
+function putWords(guessWord, arrAnswer){
+    guessedWord.textContent = guessWord
+    btn1.textContent = arrAnswer[0]
+    btn2.textContent = arrAnswer[1]
+    btn3.textContent = arrAnswer[2]
+    btn4.textContent = arrAnswer[3]
+}
+
+function chooseWords(index){
+    let arrAnswer = []
+    arrAnswer.push(Object.values(selectedDictionary[index])[0])
+    for (let i = 0; i < 3; i++){
+        arrAnswer.push(Object.values(selectedDictionary[Math.floor(Math.random() * (selectedDictionary.length))]))
+    }
+    shuffleArray(arrAnswer)
+    putWords(Object.keys(selectedDictionary[index])[0], arrAnswer)
+}
+
+function chooseAnswer(btn){
+    if (btn.textContent==Object.values(selectedDictionary[count])[0]){
+        count++
+        chooseWords(count)
+        btn1.style.color = "black"
+        btn2.style.color = "black"
+        btn3.style.color = "black"
+        btn4.style.color = "black"}
+    else btn.style.color = "red"
+
+}
+
+
+
+
+//main
+chooseDictionary("commonWords");
+//chooseWords(selectedDictionary, count)
+selector.addEventListener("change", ()=> chooseDictionary(selector.value));
+btn1.addEventListener("click", ()=> chooseAnswer(btn1))
+btn2.addEventListener("click", ()=> chooseAnswer(btn2))
+btn3.addEventListener("click", ()=> chooseAnswer(btn3))
+btn4.addEventListener("click", ()=> chooseAnswer(btn4))
